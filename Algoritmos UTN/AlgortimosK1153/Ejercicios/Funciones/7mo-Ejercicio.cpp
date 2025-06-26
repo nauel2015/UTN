@@ -1,5 +1,5 @@
 
-// Ejercicio N°6: Escribir una función que reciba un número entero y devuelva la longitud del mismo. 
+// Ejercicio N°7: Escribir una función que reciba un número entero y devuelva la longitud del mismo. 
 
 #include <iostream>
 #include <stdlib.h>

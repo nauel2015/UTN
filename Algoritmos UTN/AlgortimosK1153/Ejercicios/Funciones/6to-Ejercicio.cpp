@@ -1,5 +1,5 @@
 
-// Ejercicio N°5: Escribir una función para encontrar la suma de los dígitos de un número entero.
+// Ejercicio N°6: Escribir una función para encontrar la suma de los dígitos de un número entero.
 // Utilice esta función para imprimir la suma de los dígitos de los números entre 1 y 100.
 
 

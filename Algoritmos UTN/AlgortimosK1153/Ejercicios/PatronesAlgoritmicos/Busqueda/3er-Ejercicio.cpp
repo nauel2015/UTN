@@ -1,0 +1,115 @@
+
+/* Ejercicio N°3: Ejercicio de búsqueda secuencial en un array de struct:
+
+a. Crea una estructura (struct) "Producto" con los atributos "nombre" y "precio".
+
+b. Crea un array de objetos Producto y solicita al usuario ingresar un nombre de producto. Utiliza la
+búsqueda secuencial para determinar si ese producto está presente en el array y, en caso afirmativo,
+muestra su precio.
+
+*/
+
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
+
+using namespace std;
+
+struct producto
+{
+    string nombre;
+    float precio;
+}productos[5];
+
+// Declaracion de las funciones.
+producto cargarProductos(producto [], int &);
+int busquedaSecuencial(producto [], int, string);
+void buscarProductos(producto [], int);
+
+int main()
+{
+    int contProductos=0, opcion;
+    do{
+        cout <<"\n\tBusqueda secuencial en un array de struct. \n" << endl;
+        cout <<"Opcion 1: Cargar Productos. " << endl;
+        cout <<"Opcion 2: Buscar Producto. " << endl;
+        cout <<"Opcion 3: Salir. " << endl;
+
+        cout <<"\nIngrese su opcion: "; cin >> opcion;
+
+        switch(opcion)
+        {
+            case 1: system("cls"); cargarProductos(productos, contProductos); system("cls"); break;
+            case 2: system("cls"); buscarProductos(productos, contProductos); system("cls"); break;
+            case 3: cout <<"\nHasta luego. " << endl; break;
+        }
+    }while(opcion!=3);
+
+    cout <<"\n- Nahuel richeri\n";
+
+    system("PAUSE");
+    return 0;
+}
+
+// Definicion de las funciones.
+producto cargarProductos(producto productos[], int &contProductos)
+{
+    cout <<"\n\tTotal de productos [" << contProductos <<"]. " << endl;
+
+    if(contProductos>5)
+    {
+        cout <<"\nListado de productos lleno. Ya no se pueden cargar mas productos. " << endl;
+
+        cout <<"\nVolviendo al menu... [ENTER] " << endl;
+        system("PAUSE");
+        return *productos;
+    }
+
+    cout <<"\nCargue el listado de productos. " << endl;
+    for(int i=0; i<5; i++)
+    {
+        cin.ignore();
+        cout <<"\nNombre del producto: "; getline(cin, productos[contProductos].nombre);
+        cout <<"Precio: "; cin >> productos[contProductos].precio;
+        contProductos++;
+    }
+
+    return *productos;
+}
+
+int busquedaSecuencial(producto productos[], int len, string buscarProducto)
+{
+    int i=0;
+    while(i<len&&productos[i].nombre!=buscarProducto)
+    {
+        i++;
+    }
+
+    if(i==len)
+    {
+        return -1;
+    }else{
+        return i;
+    }
+}
+
+void buscarProductos(producto productos[], int contProductos)
+{
+    string buscarProducto;
+    cout <<"\n\tTotal de productos [" << contProductos <<"]. " << endl;
+    cin.ignore();
+    cout <<"\nIngrese el nombre del producto que busca: "; getline(cin, buscarProducto);
+
+    int pos = busquedaSecuencial(productos, contProductos, buscarProducto);
+    if(pos!=-1)
+    {
+        cout <<"\nProducto encontrado. " << endl;
+        cout <<"Nombre del producto: " << productos[pos].nombre << endl;
+        cout <<"Precio: $" << productos[pos].precio << endl;
+        }else{
+            cout <<"Producto no encontrado en el listado. " << endl;
+        }
+
+    cout <<"\nVolviendo al menu... [ENTER] " << endl;
+    system("PAUSE");
+}
